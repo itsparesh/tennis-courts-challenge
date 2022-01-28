@@ -18,4 +18,11 @@ public class CreateScheduleRequestDTO {
     @NotNull
     private LocalDateTime startDateTime;
 
+    @Override
+    public String toString() {
+        return "CreateScheduleRequestDTO{" +
+                "tennisCourtId=" + tennisCourtId +
+                ", startDateTime=" + startDateTime +
+                '}';
+    }
 }

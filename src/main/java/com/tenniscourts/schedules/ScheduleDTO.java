@@ -26,4 +26,10 @@ public class ScheduleDTO {
     @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm")
     private LocalDateTime endDateTime;
 
+    public ScheduleDTO() {}
+
+    public ScheduleDTO(Long tennisCourtId, LocalDateTime startDateTime) {
+        this.tennisCourtId = tennisCourtId;
+        this.startDateTime = startDateTime;
+    }
 }

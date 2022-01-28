@@ -3,6 +3,7 @@ package com.tenniscourts.schedules;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -12,21 +13,22 @@ public class ScheduleService {
 
     private final ScheduleRepository scheduleRepository;
 
+    @Resource
     private final ScheduleMapper scheduleMapper;
 
     public ScheduleDTO addSchedule(Long tennisCourtId, CreateScheduleRequestDTO createScheduleRequestDTO) {
-        //TODO: implement addSchedule
-        return null;
+
+        return scheduleMapper.map(scheduleMapper.map(new ScheduleDTO(tennisCourtId, createScheduleRequestDTO.getStartDateTime())));
     }
 
     public List<ScheduleDTO> findSchedulesByDates(LocalDateTime startDate, LocalDateTime endDate) {
-        //TODO: implement
+        scheduleMapper.map(scheduleRepository.findByStartDateTimeIsGreaterThanEqualAndEndDateTimeIsLessThanEqual(startDate, endDate));
         return null;
     }
 
     public ScheduleDTO findSchedule(Long scheduleId) {
-        //TODO: implement
-        return null;
+        ScheduleDTO scheduleDTO = new ScheduleDTO();
+        return scheduleMapper.map(scheduleRepository.findByIdLike(scheduleId)).get(0);
     }
 
     public List<ScheduleDTO> findSchedulesByTennisCourtId(Long tennisCourtId) {
